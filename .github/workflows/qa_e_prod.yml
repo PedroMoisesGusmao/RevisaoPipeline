@@ -31,7 +31,7 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v6
       name: Build & push Docker image
       with:
-        image: pedrom421/hello_world
+        image: pedrom421/java
         tags: ${{ GITHUB.RUN_NUMBER }}, ${{ steps.version.outputs.version }}
         registry: docker.io
         dockerfile: dockerfile
