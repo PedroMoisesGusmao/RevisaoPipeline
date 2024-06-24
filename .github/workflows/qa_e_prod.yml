@@ -20,6 +20,10 @@ jobs:
         java-version: '19'
         distribution: 'temurin'
 
+    - name: Git Version
+      id: version
+      uses: codacy/git-version@2.4.0
+
     - name: Compilando
       run: javac src/Main.java
     - name: Executando
@@ -27,8 +31,8 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v6
       name: Build & push Docker image
       with:
-        image: pedrom421/revisao_pipeline
-        tags: ${{ GITHUB.RUN_NUMBER }}
+        image: pedrom421/java
+        tags: ${{ GITHUB.RUN_NUMBER }}, ${{ steps.version.outputs.version }}
         registry: docker.io
         dockerfile: dockerfile
         username: ${{secrets.DOCKER_USERNAME}}
